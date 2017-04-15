@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Bubble Factory Test Lab</title>
+	<meta charset="utf-8">
+<script>
+
+var scores = [60, 50, 60, 58, 54, 54,
+	      58, 50, 52, 54, 48, 69,
+	      34, 55, 51, 52, 44, 51,
+	      69, 64, 66, 55, 52, 61,
+	      46, 31, 57, 52, 44, 18,
+	      41, 53, 55, 61, 51, 44];
+
+var costs = [.25, .27, .25, .25, .25, .25,
+	     .33, .31, .25, .29, .27, .22,
+	     .31, .25, .25, .33, .21, .25,
+	     .25, .25, .28, .25, .24, .22,
+	     .20, .25, .30, .25, .24, .25,
+	     .25, .25, .27, .25, .26, .29];
+
+
+function printAndGetHighScore(scores) {
+	var highest = 0;
+	var output;
+	
+	for(let i = 0; i < scores.length; i++) {
+	    output = "Bubble solution #" + i + " score: " + scores[i];
+	    document.write(output + "<br>");
+	    console.log(output);
+
+	    if(scores[i] > highest) {
+		highest = scores[i];
+        	}
+    }
+    return highest;
+}
+
+function getBestResults(scores, highest) {
+
+	var bestSolutions = [];
+
+    	for(let i = 0; i < scores.length; i++) {
+	    if (scores[i] == highest) {
+	    bestSolutions.push(i);
+	    }
+	}
+ 	return bestSolutions;
+}
+
+function getMostCostEffectiveSolution(scores, costs, highest) {
+	var cost = 100;
+	var index;
+	
+	for(let i = 0; i<scores.length; i++) {
+		if(scores[i] == highest) {
+			if(costs[i]  < cost) {
+				index = i;			
+				cost = costs[i];
+			}
+		}
+	}
+	return index;
+}
+
+
+var highest = printAndGetHighScore(scores);
+console.log("Bubble tests: " + scores.length);
+console.log("Highest bubble score: " + highest);
+document.write("Bubble tests: " + scores.length + "<br>");
+document.write("Highest bubble score: " + highest + "<br>");
+
+var bestSolutions = getBestResults(scores, highest);
+console.log("Solutions with highest score: " + bestSolutions);
+document.write("Solutions with highest score: " + bestSolutions + "<br>");
+
+var mostCostEffective = getMostCostEffectiveSolution(scores, costs, highest);
+console.log("Bubble Solution #" + mostCostEffective + " is the most cost effective");
+document.write("Bubble Solution #" + mostCostEffective + " is the most cost effective");
+
+
+</script>
+</head>
+<body> </body>
+</html>
